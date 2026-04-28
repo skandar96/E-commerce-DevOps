@@ -1,0 +1,6 @@
+    {
+    "jwtSecret": "jwtSecret",
+    "tokenExpire":"2562000"
+    
+    }
+    
