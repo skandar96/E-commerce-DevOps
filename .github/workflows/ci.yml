@@ -42,6 +42,9 @@ jobs:
       - name: Docker Build
         run: docker build -t skandar55/frontend:latest .
 
+      - name: Docker Push
+        run: docker push skandar55/frontend:latest
+
   backend:
     runs-on: ubuntu-latest
     defaults:
@@ -72,5 +75,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Docker Build
+      - name: Build Docker image
         run: docker build -t skandar55/backend:latest .
+
+      - name: Push Docker image
+        run: docker push skandar55/backend:latest
