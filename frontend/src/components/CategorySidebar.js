@@ -8,7 +8,6 @@ import {
   Category as CategoryIcon,
   ShoppingCart as CartIcon,
   Receipt as OrdersIcon,
-  Settings as SettingsIcon,
   Logout as LogoutIcon,
   ExpandLess,
   ExpandMore
