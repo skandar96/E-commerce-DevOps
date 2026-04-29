@@ -1,8 +1,9 @@
 # Stage 1 - Build
-FROM node:24-alpine AS build
+# Use Node 18 to match project dependency compatibility (avoids ajv/react-scripts issues)
+FROM node:18-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install  
 COPY . .
 
 RUN npm run build

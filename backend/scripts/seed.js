@@ -6,7 +6,6 @@ const Comment = require('../src/models/Comment');
 const Likes = require('../src/models/likes');
 const Order = require('../src/models/Order');
 const Cart = require('../src/models/Cart');
-const config = require('config');
 
 // Connect to MongoDB
 const mongo_url = process.env.MONGO_URI;
@@ -23,7 +22,7 @@ const sampleProducts = [];
 
 // Function to generate products for a category
 function generateProductsForCategory(categoryName, productTemplates, hasSizes = false) {
-  productTemplates.forEach((template, index) => {
+  productTemplates.forEach((template) => {
     const product = {
       name: template.name,
       description: template.description,

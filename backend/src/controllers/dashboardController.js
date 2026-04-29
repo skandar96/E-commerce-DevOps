@@ -3,7 +3,6 @@ const User = require('../models/User');
 const Product = require('../models/product');
 const Comment = require('../models/Comment');
 const Likes = require('../models/likes');
-const mongoose = require('mongoose');
 
 // Middleware to verify admin access
 const isAdmin = (req, res, next) => {
