@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Line, Pie, Bar } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
+import 'chart.js/auto';
 import {
   Box,
   Typography,
@@ -11,8 +11,6 @@ import {
   CircularProgress,
   LinearProgress,
   useTheme,
-  Switch,
-  FormControlLabel,
   List,
   ListItem,
   ListItemText,
@@ -58,14 +56,6 @@ const StyledIconWrapper = styled(Box)({
   background: 'rgba(0, 196, 180, 0.1)',
   marginRight: '8px',
   color: '#00C4B4',
-});
-
-const StyledTypography = styled(Typography)({
-  fontSize: '1.2rem',
-  fontWeight: 600,
-  color: '#00C4B4',
-  marginBottom: '8px',
-  fontFamily: 'Georgia, serif',
 });
 
 const ChartContainer = styled(Box)({
@@ -118,7 +108,7 @@ const Dashboard = () => {
   const [lowStockProducts, setLowStockProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [includeCancelled, setIncludeCancelled] = useState(true);
+  const [includeCancelled] = useState(true);
 
   const lineChartRef = useRef(null);
   const pieChartRef = useRef(null);

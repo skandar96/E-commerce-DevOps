@@ -81,7 +81,6 @@ const Checkout = () => {
     phone: false,
     country: false,
   });
-  const [paypalSuccess, setPaypalSuccess] = useState(false);
   const [popup, setPopup] = useState({ open: false, type: '', message: '' });
   const [saveInfo, setSaveInfo] = useState(false); // State for checkbox
 
@@ -279,7 +278,6 @@ const Checkout = () => {
         await updateUserInfo();
       }
 
-      setPaypalSuccess(true);
       setPopup({
         open: true,
         type: 'success',

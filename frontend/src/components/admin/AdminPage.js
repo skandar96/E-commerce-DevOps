@@ -12,7 +12,6 @@ import {
   Logout as LogoutIcon, Favorite, Chat, LocalOffer as LocalOfferIcon,
   Brightness4 as Brightness4Icon, Brightness7 as Brightness7Icon
 } from '@mui/icons-material';
-import {ShoppingCart as CartIcon}  from '@mui/icons-material';
 import { styled } from '@mui/system';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 

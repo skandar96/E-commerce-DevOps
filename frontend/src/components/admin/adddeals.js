@@ -343,7 +343,7 @@ const AddDeals = () => {
                         <img
                           key={index}
                           src={image}
-                          alt={`Deal image ${index + 1}`}
+                          alt={`Deal ${index + 1}`}
                           style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '4px', border: theme => `1px solid ${theme.palette.border}` }}
                         />
                       ))}

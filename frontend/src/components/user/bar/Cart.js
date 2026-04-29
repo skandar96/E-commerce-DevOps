@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Box, Typography, Grid, Card, CardMedia, CardContent, CardActions,
-  Button, CircularProgress, IconButton, TextField, Divider, Chip
+  Button, CircularProgress, IconButton, TextField, Chip
 } from '@mui/material';
 import { styled } from '@mui/system';
 import { Delete, Favorite, FavoriteBorder } from '@mui/icons-material';
@@ -92,7 +92,7 @@ const Cart = () => {
   const isLoggedIn = !!userId;
   const navigate = useNavigate();
 
-  const fetchLikeStatus = async (productId) => {
+  const fetchLikeStatus = useCallback(async (productId) => {
     if (!isLoggedIn) return { hasLiked: false };
 
     try {
@@ -122,7 +122,7 @@ const Cart = () => {
       setError(err.message);
       return { hasLiked: false };
     }
-  };
+  }, [isLoggedIn, userId, token, navigate]);
 
  
   useEffect(() => {
@@ -179,43 +179,7 @@ const Cart = () => {
     };
 
     fetchCart();
-  }, [userId, token, isLoggedIn, navigate]);
-
-  const handleAddToCart = async (productId, quantity = 1, size = null) => {
-    try {
-      const response = await fetch(`/api/cart/add`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          userId: userId,
-          productId: productId,
-          quantity: quantity,
-          size: size
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        if (response.status === 401) {
-          Cookies.remove('token');
-          Cookies.remove('role');
-          localStorage.removeItem('userId');
-          navigate('/login');
-          return;
-        }
-        throw new Error(errorData.message || 'Failed to add to cart');
-      }
-
-      const data = await response.json();
-      setCart(data.cart);
-    } catch (err) {
-      console.error('Add to cart error:', err);
-      setError(err.message);
-    }
-  };
+  }, [userId, token, isLoggedIn, navigate, fetchLikeStatus]);
 
   const handleUpdateQuantity = async (productId, size, quantity, stock) => {
     let newQuantity = parseInt(quantity);
@@ -291,39 +255,6 @@ const Cart = () => {
       setCart(data.cart);
     } catch (err) {
       console.error('Remove item error:', err);
-      setError(err.message);
-    }
-  };
-
-  const handleClearCart = async () => {
-    try {
-      const response = await fetch(`/api/cart/clear`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          userId: userId
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        if (response.status === 401) {
-          Cookies.remove('token');
-          Cookies.remove('role');
-          localStorage.removeItem('userId');
-          navigate('/login');
-          return;
-        }
-        throw new Error(errorData.message || 'Failed to clear cart');
-      }
-
-      const data = await response.json();
-      setCart(data.cart);
-    } catch (err) {
-      console.error('Clear cart error:', err);
       setError(err.message);
     }
   };

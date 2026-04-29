@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box, Typography, Grid, Card, CardMedia, CardContent, CircularProgress, Divider, Collapse, IconButton, Button
+  Box, Typography, Grid, Card, CardMedia, CircularProgress, Divider, Collapse, IconButton, Button
 } from '@mui/material';
 import { styled } from '@mui/system';
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
@@ -30,22 +30,6 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const StyledItemCard = styled(Card)(({ theme }) => ({
-  background: theme.palette.background.paper,
-  borderRadius: '12px',
-  border: `1px solid ${theme.palette.border}`,
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  padding: theme.spacing(1.5),
-  marginBottom: theme.spacing(1.5),
-  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05), inset 0 1px 3px rgba(0, 0, 0, 0.03)',
-  transition: 'transform 0.3s ease',
-  '&:hover': {
-    transform: 'scale(1.01)',
-  },
-}));
-
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   width: 80,
   height: 80,
@@ -53,14 +37,6 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   borderRadius: '8px',
   marginRight: theme.spacing(2),
   border: `1px solid ${theme.palette.border}`,
-}));
-
-const StyledCardContent = styled(CardContent)(({ theme }) => ({
-  flexGrow: 1,
-  padding: 0,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
 }));
 
 const StyledTypography = styled(Typography)(({ theme }) => ({

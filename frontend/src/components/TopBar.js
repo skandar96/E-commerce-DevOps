@@ -16,7 +16,7 @@ import {
   Badge,
 } from '@mui/material';
 import { Search as SearchIcon, ShoppingCart as CartIcon, AccountCircle } from '@mui/icons-material';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
@@ -122,7 +122,6 @@ const AppBarComponent = ({ onSearch, setCurrentPage }) => {
   const [cartAnchorEl, setCartAnchorEl] = useState(null);
   const [user, setUser] = useState(null);
   const [cartItems, setCartItems] = useState([]);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const token = Cookies.get('token');
 
@@ -148,9 +147,11 @@ const AppBarComponent = ({ onSearch, setCurrentPage }) => {
           }))
           .catch(err => {
             console.error('User fetch error:', err);
-            setError(err.message);
             setUser(null);
-            handleLogout();
+            Cookies.remove('token');
+            Cookies.remove('role');
+            localStorage.removeItem('userId');
+            navigate('/login');
           });
 
         const fetchCart = async () => {
@@ -173,17 +174,18 @@ const AppBarComponent = ({ onSearch, setCurrentPage }) => {
             setCartItems(data.items || []);
           } catch (err) {
             console.error('Cart fetch error:', err);
-            setError(err.message);
             setCartItems([]);
           }
         };
         fetchCart();
       } catch (err) {
         console.error('Token decode error:', err);
-        setError(err.message);
         setUser(null);
         setCartItems([]);
-        handleLogout();
+        Cookies.remove('token');
+        Cookies.remove('role');
+        localStorage.removeItem('userId');
+        navigate('/login');
       }
     }
   }, [token, navigate]);
@@ -213,7 +215,6 @@ const AppBarComponent = ({ onSearch, setCurrentPage }) => {
           setCartItems(data.items || []);
         } catch (err) {
           console.error('Periodic cart fetch error:', err);
-          setError(err.message);
           setCartItems([]);
         }
       }, 1000); // 30 seconds

@@ -15,7 +15,6 @@ import {
   IconButton,
   Avatar,
   Paper,
-  Badge,
   Pagination,
   Skeleton,
   Fade,

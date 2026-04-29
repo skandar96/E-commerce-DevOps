@@ -133,7 +133,7 @@ const DealsCarousel = () => {
       >
         <img
           src={currentImage.image} // Base64 string
-          alt={`Deal image ${currentImageIndex + 1}`}
+          alt={`Deal ${currentImageIndex + 1}`}
           style={{
             width: '100%',
             height: '100%', // Match the carousel height
