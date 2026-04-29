@@ -28,13 +28,13 @@ jobs:
         run: npm run lint
 
       - name: Test
-        run: npm run test 
+        run: npm run test
 
       - name: Build
         run: npm run build
 
       - name: Docker Build
-        run: docker build -t sakandar55/frontend:latest .
+        run: docker build -t skandar55/frontend:latest .
 
   backend:
     runs-on: ubuntu-latest
@@ -61,4 +61,4 @@ jobs:
         run: npm run test
 
       - name: Docker Build
-        run: docker build -t sakandar55/backend:latest .
+        run: docker build -t skandar55/backend:latest .
