@@ -28,11 +28,7 @@ jobs:
         run: npm run lint
 
       - name: Test
-<<<<<<< HEAD
-        run: npm run test 
-=======
         run: npm run test
->>>>>>> feat/ci
 
       - name: Build
         run: npm run build
