@@ -1,0 +1,30 @@
+grafana:
+  enabled: true
+  env:
+    GF_PLUGINS_PLUGIN_ADMIN_ENABLED: "false"
+  grafana.ini:
+    plugins:
+      preinstall_auto_update: false
+  livenessProbe:
+    initialDelaySeconds: 300
+  readinessProbe:
+    initialDelaySeconds: 60
+  service:
+    type: NodePort
+    nodePort: 32000
+  adminPassword: "admin"
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+alertmanager:
+  enabled: false
+
+# Reduce resource usage for small clusters
+prometheusOperator:
+  resources: {}
+
+prometheus:
+  server:
+    resources: {}
